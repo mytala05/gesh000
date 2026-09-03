@@ -60,9 +60,16 @@ export const DEFAULT_MODELS = [
   { id: "totalum-pro", name: "Totalum Pro", provider: "Totalum", enabled: true, visible: false },
 ];
 
-type Model = (typeof DEFAULT_MODELS)[number];
-let models: Model[] = [...DEFAULT_MODELS];
+export type VcaasModel = {
+  id: string;
+  name: string;
+  provider: string;
+  enabled: boolean;
+  visible: boolean;
+};
+
+let models: VcaasModel[] = [...DEFAULT_MODELS];
 export function getModels() { return models; }
-export function updateModels(next: Model[]) { models = next.slice(0, 100); return models; }
+export function updateModels(next: VcaasModel[]) { models = next.slice(0, 100); return models; }
 export function getAdminToken() { return process.env.VCAAS_ADMIN_TOKEN || process.env.TOTALUM_VCAAS_ADMIN_TOKEN || ""; }
 export function isAdminRequest(request: Request) { const expected = getAdminToken(); return Boolean(expected && request.headers.get("authorization") === `Bearer ${expected}`); }
