@@ -7,12 +7,12 @@ import { KeyRound, Server, Database, Sparkles, Globe, Github, Box, ArrowRight } 
 // 2) a compact, visual pitch for what that single key unlocks.
 export function SetupBanners() {
   const FEATURES = [
-    { icon: Server, label: "Hosting" },
-    { icon: Database, label: "Databases" },
-    { icon: Sparkles, label: "AI integration" },
-    { icon: Globe, label: "Custom domains" },
-    { icon: Github, label: "GitHub sync" },
-    { icon: Box, label: "Sandboxes" },
+    { icon: Server, label: "الاستضافة" },
+    { icon: Database, label: "قواعد البيانات" },
+    { icon: Sparkles, label: "تكامل الذكاء الاصطناعي" },
+    { icon: Globe, label: "النطاقات المخصصة" },
+    { icon: Github, label: "مزامنة GitHub" },
+    { icon: Box, label: "البيئات المعزولة" },
   ];
 
   return (
@@ -26,13 +26,13 @@ export function SetupBanners() {
           </div>
           <div className="flex-1 min-w-0">
             <span className="inline-flex items-center text-[11px] font-bold uppercase tracking-wider text-amber-700 bg-amber-100 rounded-full px-2 py-0.5">
-              Action required
+              مطلوب إجراء
             </span>
-            <h2 className="text-lg font-bold text-gray-900 mt-2">Add your Totalum API key to get started</h2>
+            <h2 className="text-lg font-bold text-gray-900 mt-2">أضف مفتاح Totalum API للبدء</h2>
             <p className="text-sm text-gray-700 mt-1.5">
-              Create a{" "}
+              أنشئ ملف{" "}
               <code className="font-mono text-[13px] font-semibold bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded">.env</code>{" "}
-              file in the project root and add:
+              في جذر المشروع وأضف إليه:
             </p>
             <div className="mt-2.5 rounded-lg bg-gray-950 font-mono text-xs px-3.5 py-2.5 overflow-x-auto ring-1 ring-white/10">
               <span className="text-amber-300">TOTALUM_VCAAS_API_KEY</span>
@@ -40,8 +40,8 @@ export function SetupBanners() {
               <span className="text-gray-500">your_key_here</span>
             </div>
             <p className="text-[13px] text-gray-600 mt-3 leading-relaxed">
-              <span className="font-semibold text-gray-800">Get your key:</span> create an account on Totalum → during
-              onboarding pick <span className="font-semibold text-gray-800">“Use the Totalum API”</span> → copy your key.
+              <span className="font-semibold text-gray-800">للحصول على المفتاح:</span> أنشئ حسابًا في Totalum ← أثناء
+              الإعداد اختر <span className="font-semibold text-gray-800">«استخدام Totalum API»</span> ← انسخ مفتاحك.
             </p>
             <div className="flex flex-wrap items-center gap-x-3 gap-y-2 mt-3.5">
               <a
@@ -50,11 +50,11 @@ export function SetupBanners() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 text-sm font-semibold text-white bg-amber-500 hover:bg-amber-600 px-4 py-2 rounded-lg shadow-sm transition-colors"
               >
-                Create account <ArrowRight className="w-4 h-4" />
+                إنشاء حساب <ArrowRight className="w-4 h-4" />
               </a>
               <span className="inline-flex items-center gap-1.5 text-[13px] font-medium text-emerald-700">
                 <Sparkles className="w-3.5 h-3.5" />
-                First 50 AI credits free
+                أول 50 رصيدًا للذكاء الاصطناعي مجانًا
               </span>
             </div>
           </div>
@@ -71,8 +71,8 @@ export function SetupBanners() {
             <Sparkles className="w-5 h-5 text-emerald-300" />
           </div>
           <div>
-            <h2 className="text-base font-bold leading-tight">One key. Everything included.</h2>
-            <p className="text-[13px] text-white/60">No other providers needed.</p>
+            <h2 className="text-base font-bold leading-tight">مفتاح واحد. كل شيء مضمّن.</h2>
+            <p className="text-[13px] text-white/60">لا حاجة إلى مزودين آخرين.</p>
           </div>
         </div>
 
@@ -94,7 +94,7 @@ export function SetupBanners() {
           rel="noopener noreferrer"
           className="inline-flex items-center gap-1.5 mt-4 text-sm font-semibold text-emerald-300 hover:text-emerald-200 transition-colors"
         >
-          See more at totalum.app/docs <ArrowRight className="w-4 h-4" />
+          اعرف المزيد في totalum.app/docs <ArrowRight className="w-4 h-4" />
         </a>
       </div>
     </div>
