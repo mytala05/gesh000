@@ -7,6 +7,8 @@ import { ScriptExecutor } from "@/components/ScriptExecutor";
 import { GlobalErrorCatcher } from "@/components/GlobalErrorCatcher";
 import { Toaster } from "@/components/ui/sonner";
 import { InsufficientCreditsModal } from "@/components/workspace/InsufficientCreditsModal";
+import { PlatformFooter, PlatformHeader } from "@/components/platform-header";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const cairo = Cairo({ variable: "--font-cairo", subsets: ["arabic", "latin"], weight: ["300", "400", "500", "600", "700", "800"] });
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
@@ -24,19 +26,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="ar" dir="rtl" className="bg-background" suppressHydrationWarning>
       <body className={`${cairo.variable} ${geistMono.variable} antialiased`}>
-        <GlobalErrorCatcher />
-        <ScriptExecutor />
-        <Toaster position="top-right" richColors />
-        {/*
-          ⭐ MOUNTED ONCE FOR THE WHOLE APP. Running out of credits can happen on any
-          screen — the dashboard creating a project, the workspace publishing one — and
-          the modal listens for the event the VCaaS client raises rather than being wired
-          per page. See `InsufficientCreditsModal`.
-        */}
-        <InsufficientCreditsModal />
-        <div className="min-h-screen flex flex-col">
-          <main className="flex-1">{children}</main>
-        </div>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+          <GlobalErrorCatcher />
+          <ScriptExecutor />
+          <Toaster position="top-right" richColors />
+          <InsufficientCreditsModal />
+          <div className="min-h-screen flex flex-col">
+            <PlatformHeader />
+            <main className="flex-1">{children}</main>
+            <PlatformFooter />
+          </div>
+        </ThemeProvider>
       </body>
     </html>
   );
