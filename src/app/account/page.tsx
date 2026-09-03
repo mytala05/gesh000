@@ -17,7 +17,7 @@ export default async function AccountPage() {
   const status = subscription?.status === "active" ? "نشطة" : "غير نشطة";
 
   return (
-    <main className="mx-auto w-full max-w-7xl flex-1 px-4 py-12 md:px-8">
+    <main className="mx-auto w-full max-w-7xl flex-1 px-4 py-12 md:px-8" dir="rtl">
       <div className="flex flex-col justify-between gap-5 border-b border-border pb-8 md:flex-row md:items-end">
         <div>
           <p className="font-bold text-primary">مساحة العمل</p>
