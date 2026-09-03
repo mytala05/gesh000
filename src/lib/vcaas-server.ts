@@ -10,6 +10,8 @@
  * ⚠️ NEVER IMPORT THIS FROM A CLIENT COMPONENT. It reads the API key.
  */
 /** Base URL for every Totalum VCaaS API endpoint. Single source of truth. */
+import { vcaasRequestWithRotation, vcaasUploadWithRotation } from "@/lib/vcaas-key-rotation";
+
 const VCAAS_BASE_URL = "https://api-accounts.totalum.app/api/v1/vcaas";
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -64,7 +66,7 @@ export async function vcaasRequest(
     headers["Content-Type"] = "application/json";
   }
 
-  return fetch(`${VCAAS_BASE_URL}${path}`, {
+  return vcaasRequestWithRotation(`${VCAAS_BASE_URL}${path}`, {
     ...options,
     headers,
   });
@@ -85,9 +87,5 @@ export async function vcaasUploadRequest(
   path: string,
   formData: FormData
 ): Promise<Response> {
-  return fetch(`${VCAAS_BASE_URL}${path}`, {
-    method: "POST",
-    headers: { "api-key": getVcaasApiKey() },
-    body: formData,
-  });
+  return vcaasUploadWithRotation(`${VCAAS_BASE_URL}${path}`, formData);
 }
