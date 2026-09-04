@@ -26,6 +26,7 @@ import Link from "next/link";
 import { toast } from "sonner";
 import { uploadFilesToProject as uploadFilesToProjectHelper } from "@/lib/upload";
 import { SetupBanners } from "@/components/SetupBanners";
+import { ProjectShowcase } from "@/components/project-showcase";
 import type { VcaasProject, VcaasProjectSummary } from "@/lib/vcaas-types";
 
 type ViewMode = "cards" | "table";
@@ -287,7 +288,7 @@ export default function DashboardPage() {
     setCreating(true);
     const res = await vcaasApi.projects.create({ projectId: id, description: newProjectDesc.trim() });
     if (res.ok) {
-      toast.success("Project created!"); setDialogOpen(false); setNewProjectId(""); setNewProjectDesc("");
+      toast.success("تم إنشاء المشروع بنجاح"); setDialogOpen(false); setNewProjectId(""); setNewProjectDesc("");
       router.push(`/project/${id}`);
     } else toast.error(res.error || "Failed to create project");
     setCreating(false);
@@ -424,11 +425,11 @@ export default function DashboardPage() {
             <div className="w-7 h-7 rounded-lg bg-gray-900 flex items-center justify-center">
               <Sparkles className="w-3.5 h-3.5 text-white" />
             </div>
-            <span className="font-semibold tracking-tight text-gray-900 text-sm">VibeBuild</span>
+            <span className="font-semibold tracking-tight text-gray-900 text-sm">استوديو جيشو</span>
           </Link>
           <div className="flex items-center gap-2">
             <Link href="/">
-              <button className="text-xs text-gray-500 hover:text-gray-700 px-2.5 py-1.5 rounded-lg hover:bg-black/5 transition-colors">Home</button>
+              <button className="text-xs text-gray-500 hover:text-gray-700 px-2.5 py-1.5 rounded-lg hover:bg-black/5 transition-colors">الرئيسية</button>
             </Link>
           </div>
         </div>
@@ -446,15 +447,15 @@ export default function DashboardPage() {
                   </div>
                 )}
                 <h1 className={`font-bold tracking-tight text-gray-900 ${hasProjects ? "text-xl" : "text-3xl sm:text-4xl"}`}>
-                  What do you want to build?
+                  ماذا تريد أن تبني؟
                 </h1>
-                {!hasProjects && <p className="text-gray-500 max-w-md mx-auto mt-2 text-sm">Describe your app and AI will build it in minutes.</p>}
+                {!hasProjects && <p className="text-gray-500 max-w-md mx-auto mt-2 text-sm">صف تطبيقك وسيبنيه الذكاء الاصطناعي خلال دقائق.</p>}
               </div>
               <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg shadow-gray-200/50 border border-gray-200/60 overflow-hidden">
                 <textarea
                   value={firstPrompt}
                   onChange={(e) => setFirstPrompt(e.target.value)}
-                  placeholder="Describe your app... e.g. 'A project management tool with kanban boards'"
+                  placeholder="صف تطبيقك... مثال: أداة لإدارة المشاريع مع لوحات كانبان"
                   className="w-full min-h-[90px] sm:min-h-[110px] resize-none text-[15px] p-5 pb-2 outline-none placeholder:text-gray-400 bg-transparent"
                   onKeyDown={(e) => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); openBuildModal(); } }}
                 />
@@ -472,11 +473,11 @@ export default function DashboardPage() {
                   <label className="cursor-pointer flex items-center gap-1.5 text-xs text-gray-400 hover:text-gray-600 transition-colors px-1.5 py-1 rounded-lg hover:bg-gray-50">
                     <input type="file" multiple className="hidden" onChange={handleFileSelect} accept="image/*,.pdf,.svg" />
                     {uploading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Paperclip className="w-4 h-4" />}
-                    <span className="hidden sm:inline">Attach</span>
+                    <span className="hidden sm:inline">إرفاق</span>
                   </label>
                   <button onClick={openBuildModal} disabled={!firstPrompt.trim() && attachedFiles.length === 0}
                     className="flex items-center gap-1.5 bg-gray-900 hover:bg-gray-800 disabled:bg-gray-300 text-white text-xs font-medium px-4 h-8 rounded-xl transition-colors">
-                    <Send className="w-3.5 h-3.5" /><span>Build</span>
+                    <Send className="w-3.5 h-3.5" /><span>بناء</span>
                   </button>
                 </div>
               </div>
@@ -780,7 +781,7 @@ export default function DashboardPage() {
               </div>
             )}
             <Button className="w-full bg-gray-900 hover:bg-gray-800" onClick={confirmBuild} disabled={buildCreating || normalizeId(buildName).length < 3}>
-              {buildCreating ? <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> Creating...</> : <><ArrowRight className="w-4 h-4 mr-2" /> Create & Build</>}
+              {buildCreating ? <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> جارٍ الإنشاء...</> : <><ArrowRight className="w-4 h-4 mr-2" /> Create & Build</>}
             </Button>
           </div>
         </DialogContent>
@@ -795,7 +796,7 @@ export default function DashboardPage() {
               <AlertTriangle className="w-7 h-7 text-red-500" />
             </div>
             <DialogHeader className="mt-4">
-              <DialogTitle className="text-center text-lg font-semibold text-gray-900">Delete this project?</DialogTitle>
+              <DialogTitle className="text-center text-lg font-semibold text-gray-900">هل تريد حذف هذا المشروع؟</DialogTitle>
             </DialogHeader>
           </div>
 
@@ -816,7 +817,7 @@ export default function DashboardPage() {
                 onClick={() => setDeleteTarget(null)}
                 disabled={deleting}
               >
-                Cancel
+                إلغاء
               </Button>
               <Button
                 className="flex-1 bg-red-600 hover:bg-red-700 text-white"
@@ -834,7 +835,9 @@ export default function DashboardPage() {
         </DialogContent>
       </Dialog>
 
-      {/* ═══ EXPORT · IMPORT · DUPLICATE — totalum-platform's dialogs, unchanged ═══ */}
+      <ProjectShowcase />
+
+      {/* نوافذ التصدير والاستيراد والنسخ */}
       <ExportProjectDialog
         open={exportTarget !== null}
         onOpenChange={open => {
