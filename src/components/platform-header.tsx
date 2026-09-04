@@ -8,7 +8,7 @@ import { useTheme } from "next-themes";
 
 const links = [
   { href: "/web", label: "ويب" },
-  { href: "/mobile", label: "موبايل Android & iPhone" },
+  { href: "/mobile", label: "تطبيقات الجوال" },
   { href: "/projects", label: "مشاريع كاملة" },
   { href: "/pricing", label: "خطط الأسعار" },
   { href: "/about", label: "من نحن" },

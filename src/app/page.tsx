@@ -26,6 +26,7 @@ import Link from "next/link";
 import { toast } from "sonner";
 import { uploadFilesToProject as uploadFilesToProjectHelper } from "@/lib/upload";
 import { SetupBanners } from "@/components/SetupBanners";
+import { ProjectShowcase } from "@/components/project-showcase";
 import type { VcaasProject, VcaasProjectSummary } from "@/lib/vcaas-types";
 
 type ViewMode = "cards" | "table";
@@ -287,7 +288,7 @@ export default function DashboardPage() {
     setCreating(true);
     const res = await vcaasApi.projects.create({ projectId: id, description: newProjectDesc.trim() });
     if (res.ok) {
-      toast.success("Project created!"); setDialogOpen(false); setNewProjectId(""); setNewProjectDesc("");
+      toast.success("تم إنشاء المشروع بنجاح"); setDialogOpen(false); setNewProjectId(""); setNewProjectDesc("");
       router.push(`/project/${id}`);
     } else toast.error(res.error || "Failed to create project");
     setCreating(false);
@@ -424,7 +425,7 @@ export default function DashboardPage() {
             <div className="w-7 h-7 rounded-lg bg-gray-900 flex items-center justify-center">
               <Sparkles className="w-3.5 h-3.5 text-white" />
             </div>
-            <span className="font-semibold tracking-tight text-gray-900 text-sm">VibeBuild</span>
+            <span className="font-semibold tracking-tight text-gray-900 text-sm">استوديو جيشو</span>
           </Link>
           <div className="flex items-center gap-2">
             <Link href="/">
@@ -780,7 +781,7 @@ export default function DashboardPage() {
               </div>
             )}
             <Button className="w-full bg-gray-900 hover:bg-gray-800" onClick={confirmBuild} disabled={buildCreating || normalizeId(buildName).length < 3}>
-              {buildCreating ? <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> Creating...</> : <><ArrowRight className="w-4 h-4 mr-2" /> Create & Build</>}
+              {buildCreating ? <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> جارٍ الإنشاء...</> : <><ArrowRight className="w-4 h-4 mr-2" /> Create & Build</>}
             </Button>
           </div>
         </DialogContent>
@@ -795,7 +796,7 @@ export default function DashboardPage() {
               <AlertTriangle className="w-7 h-7 text-red-500" />
             </div>
             <DialogHeader className="mt-4">
-              <DialogTitle className="text-center text-lg font-semibold text-gray-900">Delete this project?</DialogTitle>
+              <DialogTitle className="text-center text-lg font-semibold text-gray-900">هل تريد حذف هذا المشروع؟</DialogTitle>
             </DialogHeader>
           </div>
 
@@ -816,7 +817,7 @@ export default function DashboardPage() {
                 onClick={() => setDeleteTarget(null)}
                 disabled={deleting}
               >
-                Cancel
+                إلغاء
               </Button>
               <Button
                 className="flex-1 bg-red-600 hover:bg-red-700 text-white"
@@ -834,7 +835,9 @@ export default function DashboardPage() {
         </DialogContent>
       </Dialog>
 
-      {/* ═══ EXPORT · IMPORT · DUPLICATE — totalum-platform's dialogs, unchanged ═══ */}
+      <ProjectShowcase />
+
+      {/* نوافذ التصدير والاستيراد والنسخ */}
       <ExportProjectDialog
         open={exportTarget !== null}
         onOpenChange={open => {
